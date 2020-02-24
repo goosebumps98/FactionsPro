@@ -1,4 +1,4 @@
-name: FactionsPro
+name: Leagues
 author: Tethered_
 description: A Plugin For Easily Managing Factions
 version: 1.3.20
@@ -7,8 +7,8 @@ api: [3.0.0]
 softdepend: ["AntiSpamPro"]
 extensions: [sqlite3]
 commands:
-  f:
-    description: use /f help for all parameters
+  l:
+    description: use /l help for all parameters
     permission: f.command
 permissions:
   f.command:
