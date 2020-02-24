@@ -34,26 +34,26 @@ class FactionCommands {
         if (!$sender instanceof Player || ($sender->isOp() && $this->plugin->prefs->get("AllowOpToChangeFactionPower"))) {
             if (strtolower($args[0]) == "addpower") {
                 if (!isset($args[1]) || !isset($args[2]) || !$this->alphanum($args[1]) || !is_numeric($args[2])) {
-                    $sender->sendMessage($this->plugin->formatMessage("Usage: /f addpower <faction name> <power>"));
+                    $sender->sendMessage($this->plugin->formatMessage("Usage: /f addpower <league name> <power>"));
                     return true;
                 }
                 if ($this->plugin->factionExists($args[1])) {
                     $this->plugin->addFactionPower($args[1], $args[2]);
-                    $sender->sendMessage($this->plugin->formatMessage("Power " . $args[2] . " added to Faction " . $args[1]));
+                    $sender->sendMessage($this->plugin->formatMessage("Power " . $args[2] . " added to League " . $args[1]));
                 } else {
-                    $sender->sendMessage($this->plugin->formatMessage("Faction " . $args[1] . " does not exist"));
+                    $sender->sendMessage($this->plugin->formatMessage("League " . $args[1] . " does not exist"));
                 }
             }
             if (strtolower($args[0]) == "setpower") {
                 if (!isset($args[1]) || !isset($args[2]) || !$this->alphanum($args[1]) || !is_numeric($args[2])) {
-                    $sender->sendMessage($this->plugin->formatMessage("Usage: /f setpower <faction name> <power>"));
+                    $sender->sendMessage($this->plugin->formatMessage("Usage: /l setpower <league name> <power>"));
                     return true;
                 }
                 if ($this->plugin->factionExists($args[1])) {
                     $this->plugin->setFactionPower($args[1], $args[2]);
-                    $sender->sendMessage($this->plugin->formatMessage("Faction " . $args[1] . " set to Power " . $args[2]));
+                    $sender->sendMessage($this->plugin->formatMessage("League " . $args[1] . " set to Power " . $args[2]));
                 } else {
-                    $sender->sendMessage($this->plugin->formatMessage("Faction " . $args[1] . " does not exist"));
+                    $sender->sendMessage($this->plugin->formatMessage("League " . $args[1] . " does not exist"));
                 }
             }
             if (!$sender instanceof Player) return true;
@@ -131,7 +131,7 @@ class FactionCommands {
                     foreach ($this->plugin->getServer()->getOnlinePlayers() as $p) {
                         if ($this->plugin->getPlayerFaction($p->getName()) == $factionName) {
                             if ($this->plugin->getLeader($factionName) == $p->getName()) {
-                                $p->sendMessage("$sFaction wants to start a war, '/l war $sFaction' to start!");
+                                $p->sendMessage("$sLeague wants to start a war, '/l war $sLeague' to start!");
                                 $sender->sendMessage("League war requested");
                                 return true;
                             }
@@ -179,7 +179,7 @@ class FactionCommands {
                     $this->plugin->updateAllies($factionName);
                     $this->plugin->setFactionPower($factionName, $this->plugin->prefs->get("TheDefaultPowerEveryFactionStartsWith"));
                     $this->plugin->updateTag($sender->getName());
-                    $sender->sendMessage($this->plugin->formatMessage("Faction created", true));
+                    $sender->sendMessage($this->plugin->formatMessage("§bLeague Established,", true));
                     return true;
                 }
             }
